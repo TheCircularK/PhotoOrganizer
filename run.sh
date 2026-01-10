@@ -13,32 +13,23 @@ log() {
 }
 
 # 1. Check if python 3.14 is installed
-if ! command -v python3 &>/dev/null || ! python3 --version | grep -q "$PYTHON_VERSION"; then
+if ! command -v "python${PYTHON_VERSION}" &>/dev/null; then
     log "Python $PYTHON_VERSION not found. Installing..."
     
-    if [[ "$(uname)" == "Linux" ]]; then
-        if command -v dnf &>/dev/null; then
-            sudo dnf install -y "python${PYTHON_VERSION}" "python${PYTHON_VERSION}-venv" "python${PYTHON_VERSION}-devel"
-        else
-            log "DNF not found. Please install Python $PYTHON_VERSION manually."
-            exit 1
-        fi
-    elif [[ "$(uname)" == "Darwin" ]]; then
-        log "On macOS, install Python $PYTHON_VERSION via Homebrew:"
-        log "brew install python@$PYTHON_VERSION"
-        exit 1
+    if command -v dnf &>/dev/null; then
+        sudo dnf install -y "python${PYTHON_VERSION}" "python${PYTHON_VERSION}-tools" --skip-broken --skip-unavailable
     else
-        log "Unsupported OS. Please install Python $PYTHON_VERSION manually."
+        log "DNF not found. Please install Python $PYTHON_VERSION manually."
         exit 1
     fi
 else
     log "Python $PYTHON_VERSION is already installed."
 fi
 
-# 2. Check if tkinter is installed for this python
-if ! python3 -c "import tkinter" &>/dev/null; then
+# 2. Ensure tkinter works
+if ! "python${PYTHON_VERSION}" -c "import tkinter" &>/dev/null; then
     log "Tkinter not found. Installing..."
-    sudo dnf install -y "python${PYTHON_VERSION}-tkinter"
+    sudo dnf install -y python3-tkinter --skip-broken --skip-unavailable
 else
     log "Tkinter is already installed."
 fi
@@ -46,7 +37,7 @@ fi
 # 3. Check if venv exists
 if [[ ! -d "$VENV_DIR" ]]; then
     log "Creating virtual environment in $VENV_DIR..."
-    python3 -m venv "$VENV_DIR"
+    "python${PYTHON_VERSION}" -m venv "$VENV_DIR"
 else
     log "Virtual environment already exists."
 fi
@@ -56,11 +47,13 @@ log "Activating virtual environment..."
 # shellcheck disable=SC1091
 source "$VENV_DIR/bin/activate"
 
-# 5. Install requirements if needed
+# 5. Upgrade pip and install requirements
+log "Upgrading pip..."
+python -m pip install --upgrade pip
+
 if [[ -f "$REQUIREMENTS_FILE" ]]; then
     log "Installing requirements from $REQUIREMENTS_FILE..."
-    pip install --upgrade pip
-    pip install -r "$REQUIREMENTS_FILE"
+    python -m pip install -r "$REQUIREMENTS_FILE"
 else
     log "No requirements.txt found, skipping."
 fi

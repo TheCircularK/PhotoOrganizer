@@ -68,7 +68,7 @@ def toggle_destination():
 
 
 def browse_source():
-    folder = filedialog.askdirectory(title="Select Source Folder")
+    folder = filedialog.askdirectory(title="Select Source Folder", initialdir=os.path.expanduser("~"))
     if folder:
         source_library_entry.delete(0, tk.END)
         source_library_entry.insert(0, folder)
@@ -78,7 +78,7 @@ def browse_source():
 
 
 def browse_destination():
-    folder = filedialog.askdirectory(title="Select Destination Folder")
+    folder = filedialog.askdirectory(title="Select Destination Folder", initialdir=os.path.expanduser("~"))
     if folder:
         destination_path_input.delete(0, tk.END)
         destination_path_input.insert(0, folder)
@@ -87,7 +87,7 @@ def browse_destination():
 if __name__ == "__main__":
     window = tk.Tk()
     window.title("Photo Organizer")
-    window.geometry("700x400")
+    window.geometry("1500x850")
 
     # Main frame
     frame = ttk.Frame(window, padding=20)
