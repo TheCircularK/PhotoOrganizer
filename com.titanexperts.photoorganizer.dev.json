@@ -28,9 +28,8 @@
             "buildsystem" : "meson",
             "sources" : [
                 {
-                    "type" : "git",
-                    "url" : "file:///home/andrew/Projects/PhotoOrganizer",
-                    "branch": "main"
+                    "type" : "dir",
+                    "path" : "."
                 }
             ]
         },

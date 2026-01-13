@@ -22,9 +22,9 @@ from gi.repository import Gtk
 from gi.repository import Gio
 from gi.repository import GLib
 from gi.repository import GObject
-from . import utils
-from utils import *
 from pathlib import Path
+import threading
+from .utils import handle_files
 
 @Gtk.Template(resource_path='/com/titanexperts/photoorganizer/ui/main.ui')
 class PhotoOrganizerWindow(Adw.ApplicationWindow):
@@ -87,15 +87,20 @@ class PhotoOrganizerWindow(Adw.ApplicationWindow):
         log_win = PoLogWindow(application=self.get_application())
         log_win.present()
 
-        handle_files(
-            source_folder=Path(source_dir),
-            rename_enabled=rename_active,
-            organize_enabled=organize_active,
-            organize_dir=Path(target_dir),
-            dry_run=dry_run_active,
-            logger=log_win.log
+        thread = threading.Thread(
+            target=handle_files,
+            kwargs={
+                "source_folder": Path(source_dir),
+                "rename_enabled": rename_active,
+                "organize_enabled": organize_active,
+                "organize_dir": Path(target_dir),
+                "dry_run": dry_run_active,
+                "logger": log_win.log
+            },
+            daemon=True
         )
 
+        thread.start()
 
     def on_source_dir_clicked(self, button):
         dialog = Gtk.FileDialog()
@@ -150,3 +155,5 @@ class PoLogWindow(Adw.ApplicationWindow):
         mark = self.buffer.create_mark(None, self.buffer.get_end_iter(), True)
         self.textview.scroll_to_mark(mark, 0.0, True, 0.0, 1.0)
         return False
+
+
