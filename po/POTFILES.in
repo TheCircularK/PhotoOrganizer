@@ -1,8 +1,8 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
-data/com.titanexperts.photoorganizer.desktop.in
-data/com.titanexperts.photoorganizer.metainfo.xml.in
-data/com.titanexperts.photoorganizer.gschema.xml
+data/com.thecirculark.photoorganizer.desktop.in
+data/com.thecirculark.photoorganizer.metainfo.xml.in
+data/com.thecirculark.photoorganizer.gschema.xml
 src/main.py
 src/window.py
 src/ui/main.ui

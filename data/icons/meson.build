@@ -1,4 +1,4 @@
-application_id = 'com.titanexperts.photoorganizer'
+application_id = 'com.thecirculark.photoorganizer'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

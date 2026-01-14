@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/com/titanexperts/photoorganizer">
+  <gresource prefix="/com/thecirculark/photoorganizer">
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
     <file preprocess="xml-stripblanks">ui/main.ui</file>
     <file preprocess="xml-stripblanks">ui/po_log_window.ui</file>

@@ -27,7 +27,7 @@ import threading
 from datetime import datetime
 from .utils import handle_files
 
-@Gtk.Template(resource_path='/com/titanexperts/photoorganizer/ui/main.ui')
+@Gtk.Template(resource_path='/com/thecirculark/photoorganizer/ui/main.ui')
 class PhotoOrganizerWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'PhotoOrganizerWindow'
 
@@ -142,7 +142,7 @@ class PhotoOrganizerWindow(Adw.ApplicationWindow):
         except GLib.Error:
             pass
 
-@Gtk.Template(resource_path='/com/titanexperts/photoorganizer/ui/po_log_window.ui')
+@Gtk.Template(resource_path='/com/thecirculark/photoorganizer/ui/po_log_window.ui')
 class PoLogWindow(Adw.ApplicationWindow):
     __gtype_name__ = "PoLogWindow"
 

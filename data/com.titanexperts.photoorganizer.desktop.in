@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=photoorganizer
 Exec=photoorganizer
-Icon=com.titanexperts.photoorganizer
+Icon=com.thecirculark.photoorganizer
 Terminal=false
 Type=Application
 Categories=Utility;

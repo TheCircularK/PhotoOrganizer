@@ -31,9 +31,9 @@ class PhotoOrganizerApplication(Adw.Application):
     """The main application singleton class."""
 
     def __init__(self):
-        super().__init__(application_id='com.titanexperts.photoorganizer',
+        super().__init__(application_id='com.thecirculark.photoorganizer',
                          flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
-                         resource_base_path='/com/titanexperts/photoorganizer')
+                         resource_base_path='/com/thecirculark/photoorganizer')
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
@@ -52,7 +52,7 @@ class PhotoOrganizerApplication(Adw.Application):
     def on_about_action(self, *args):
         """Callback for the app.about action."""
         about = Adw.AboutDialog(application_name='photoorganizer',
-                                application_icon='com.titanexperts.photoorganizer',
+                                application_icon='com.thecirculark.photoorganizer',
                                 developer_name='Andrew',
                                 version='0.1.0',
                                 developers=['Andrew'],
