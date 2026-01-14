@@ -78,12 +78,6 @@ class PhotoOrganizerWindow(Adw.ApplicationWindow):
         rename_active = self.rename_toggle.get_active()
         dry_run_active = self.dry_run_toggle.get_active()
 
-        print(f"Source Directory: {source_dir}")
-        print(f"Target Directory: {target_dir}")
-        print(f"Organize: {organize_active}")
-        print(f"Rename: {rename_active}")
-        print(f"Dry run: {dry_run_active}")
-
         # Log window
         log_win = PoLogWindow(application=self.get_application())
         log_win.present()
