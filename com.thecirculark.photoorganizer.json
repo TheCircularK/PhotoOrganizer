@@ -38,7 +38,7 @@
     {
       "name": "python3-exif",
       "buildsystem": "pip",
-      "build-commands": ["pip install --prefix=/app exif"],
+      "build-commands": ["python3 -m pip install --prefix=/app exif"],
       "sources": [],
       "build-options": {
       }
