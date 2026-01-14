@@ -50,6 +50,22 @@ def get_image_datetime_taken(image_path: Path):
 def build_filename(dt: datetime, milliseconds: str, ext: str):
     return f"{dt.strftime('%Y%m%d%H%M%S')}-{milliseconds}{ext}"
 
+def resolve_collision(target_path: Path) -> Path:
+    if not target_path.exists():
+        return target_path
+
+    stem = target_path.stem
+    suffix = target_path.suffix
+    parent = target_path.parent
+
+    counter = 1
+
+    while True:
+        new_path = parent / f"{stem} ({counter}){suffix}"
+        if not new_path.exists():
+            return new_path
+        counter += 1
+
 def handle_files(source_folder: Path, rename_enabled: bool, organize_enabled: bool, organize_dir: Path, dry_run: bool, logger=print):
     for root, _, files in os.walk(source_folder, topdown=True):
         for name in files:
@@ -68,19 +84,21 @@ def handle_files(source_folder: Path, rename_enabled: bool, organize_enabled: bo
                 target_name = full_image_path.name
 
             if organize_enabled:
-                target_dir = organize_dir / str(dt.year) / f"{dt.year}-{dt.month:02d}"
+                target_dir = organize_dir / str(dt.year) / f"{dt.month:02d}-{dt.strftime('%B')}"
                 target_path = target_dir / target_name
             else:
                 target_dir = full_image_path.parent
                 target_path = target_dir / target_name
 
             if dry_run:
-                action_description = f"[DRY-RUN] Would move: {full_image_path} -> {target_path}"
+                final_path = resolve_collision(target_path)
+                action_description = f"[DRY-RUN] Would move: {full_image_path} -> {final_path}"
             else:
                 try:
                     target_dir.mkdir(parents=True, exist_ok=True)
-                    shutil.move(str(full_image_path), str(target_path))
-                    action_description = f"Moved: {full_image_path} -> {target_path}"
+                    final_path = resolve_collision(target_path)
+                    shutil.move(str(full_image_path), str(final_path))
+                    action_description = f"Moved: {full_image_path} -> {final_path}"
                 except Exception as e:
                     action_description = f"Skipping {full_image_path}: {e}"
 

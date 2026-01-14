@@ -119,7 +119,9 @@ class PhotoOrganizerWindow(Adw.ApplicationWindow):
     def on_source_dir_selected(self, dialog, result):
         try:
             folder = dialog.select_folder_finish(result)
-            self.source_dir_input.set_text(folder.get_path())
+            new_path = folder.get_path()
+            self.source_dir_input.set_text(new_path)
+            self.destination_dir_input.set_text(new_path)
         except GLib.Error:
             pass
 
@@ -185,7 +187,8 @@ class PoLogWindow(Adw.ApplicationWindow):
     def on_save_clicked(self, button):
         dialog = Gtk.FileDialog()
         dialog.set_title("Save Log File")
-        dialog.set_initial_name("photo_organizer_log.txt")
+        filename = f"photo_organizer_log_{self.start_time.strftime('%Y-%m-%d_%H-%M-%S')}.txt"
+        dialog.set_initial_name(filename)
 
         dialog.save(self, None, self.on_save_finished)
 
