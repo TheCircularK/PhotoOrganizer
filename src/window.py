@@ -24,6 +24,7 @@ from gi.repository import GLib
 from gi.repository import GObject
 from pathlib import Path
 import threading
+from datetime import datetime
 from .utils import handle_files
 
 @Gtk.Template(resource_path='/com/titanexperts/photoorganizer/ui/main.ui')
@@ -87,16 +88,19 @@ class PhotoOrganizerWindow(Adw.ApplicationWindow):
         log_win = PoLogWindow(application=self.get_application())
         log_win.present()
 
+        def run_with_completion():
+            handle_files(
+                source_folder=Path(source_dir),
+                rename_enabled=rename_active,
+                organize_enabled=organize_active,
+                organize_dir=Path(target_dir),
+                dry_run=dry_run_active,
+                logger=log_win.log
+            )
+            log_win.log_end()
+
         thread = threading.Thread(
-            target=handle_files,
-            kwargs={
-                "source_folder": Path(source_dir),
-                "rename_enabled": rename_active,
-                "organize_enabled": organize_active,
-                "organize_dir": Path(target_dir),
-                "dry_run": dry_run_active,
-                "logger": log_win.log
-            },
+            target=run_with_completion,
             daemon=True
         )
 
@@ -141,15 +145,63 @@ class PoLogWindow(Adw.ApplicationWindow):
     __gtype_name__ = "PoLogWindow"
 
     textview = Gtk.Template.Child()
+    save_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         self.buffer = self.textview.get_buffer()
         self.end_mark = self.buffer.create_mark(None, self.buffer.get_end_iter(), False)
+        self.file_count = 0
+        self.start_time = datetime.now()
+
+        self.save_button.connect("clicked", self.on_save_clicked)
+
+        self._append_text("====================")
+        self._append_text("Starting")
+        self._append_text(f"Time started: {self.start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+        self._append_text("====================")
+        self._append_text("")
 
     def log(self, message: str):
+        self.file_count += 1
         GLib.idle_add(self._append_text, message)
+
+    def log_end(self):
+        GLib.idle_add(self._append_end_message)
+
+    def _append_end_message(self):
+        end_time = datetime.now()
+        duration = end_time - self.start_time
+
+        self._append_text("")
+        self._append_text("====================")
+        self._append_text("Done")
+        self._append_text(f"Time ended: {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
+        self._append_text(f"Total time taken: {duration}")
+        self._append_text(f"Processed {self.file_count} files")
+        self._append_text("====================")
+
+    def on_save_clicked(self, button):
+        dialog = Gtk.FileDialog()
+        dialog.set_title("Save Log File")
+        dialog.set_initial_name("photo_organizer_log.txt")
+
+        dialog.save(self, None, self.on_save_finished)
+
+    def on_save_finished(self, dialog, result):
+        try:
+            file = dialog.save_finish(result)
+            if file:
+                start_iter = self.buffer.get_start_iter()
+                end_iter = self.buffer.get_end_iter()
+                text = self.buffer.get_text(start_iter, end_iter, True)
+
+                with open(file.get_path(), 'w') as f:
+                    f.write(text)
+
+        except GLib.Error:
+            pass
 
     def _append_text(self, message: str):
         end_iter = self.buffer.get_end_iter()

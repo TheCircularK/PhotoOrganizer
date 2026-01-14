@@ -17,6 +17,12 @@
                 <property name="label">Run Log</property>
               </object>
             </property>
+            <child type="end">
+              <object class="GtkButton" id="save_button">
+                <property name="icon-name">document-save-symbolic</property>
+                <property name="tooltip-text">Save Log</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
