@@ -144,16 +144,17 @@ class PoLogWindow(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
         self.buffer = self.textview.get_buffer()
+        self.end_mark = self.buffer.create_mark(None, self.buffer.get_end_iter(), False)
 
     def log(self, message: str):
-        """Append a line to the log in the TextView safely in the GTK main loop."""
         GLib.idle_add(self._append_text, message)
 
     def _append_text(self, message: str):
         end_iter = self.buffer.get_end_iter()
-        mark = self.buffer.create_mark(None, self.buffer.get_end_iter(), True)
-        self.textview.scroll_to_mark(mark, 0.0, True, 0.0, 1.0)
+        self.buffer.insert(end_iter, message + "\n")
+        self.textview.scroll_to_mark(self.end_mark, 0.0, True, 0.0, 1.0)
         return False
 
 
