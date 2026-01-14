@@ -1,6 +1,7 @@
 {
   "id": "com.thecirculark.photoorganizer",
   "runtime": "org.gnome.Platform",
+  "runtime-version": "49",
   "sdk": "org.gnome.Sdk",
   "command": "photoorganizer",
   "finish-args": [
@@ -36,9 +37,11 @@
     },
     {
       "name": "python3-exif",
-      "buildsystem": "simple",
-      "build-commands": ["pip3 install --prefix=/app exif"],
-      "sources": []
+      "buildsystem": "pip",
+      "build-commands": ["pip install --prefix=/app exif"],
+      "sources": [],
+      "build-options": {
+      }
     }
   ]
 }
