@@ -47,6 +47,7 @@ class PhotoOrganizerApplication(Adw.Application):
         win = self.props.active_window
         if not win:
             win = PhotoOrganizerWindow(application=self)
+            win.set_icon_name("com.thecirculark.photoorganizer")
         win.present()
 
     def on_about_action(self, *args):
