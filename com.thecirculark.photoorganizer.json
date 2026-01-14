@@ -29,7 +29,7 @@
       "sources": [
         {
           "type": "git",
-          "url": "file:///home/andrew/Projects/PhotoOrganizer",
+          "url": "https://github.com/TheCircularK/PhotoOrganizer",
           "branch": "main"
         }
       ]
