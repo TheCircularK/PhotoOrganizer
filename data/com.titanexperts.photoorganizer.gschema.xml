@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="photoorganizer">
+	<schema id="com.titanexperts.photoorganizer" path="/com/titanexperts/photoorganizer/">
+	</schema>
+</schemalist>
