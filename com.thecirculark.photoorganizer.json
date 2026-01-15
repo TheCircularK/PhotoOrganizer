@@ -36,9 +36,25 @@
       ]
     },
     {
+      "name": "python3-plum-py",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 -m pip install --no-index --no-build-isolation --prefix=/app ."
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://files.pythonhosted.org/packages/3a/2a/a650b0cde5a15f4a9375df43bd7eacaffb65b30c8395b6b6cd84df2bf7ae/plum-py-0.8.7.tar.gz",
+          "sha256": "40a25a70f7fd213f57cdd1decc65874df2d213d19d63478a1addcca748c13c4e"
+        }
+      ]
+    },
+    {
       "name": "python3-exif",
       "buildsystem": "simple",
-      "build-commands": ["python3 -m pip install --no-index --no-build-isolation --prefix=/app ."],
+      "build-commands": [
+        "python3 -m pip install --no-index --no-build-isolation --prefix=/app ."
+      ],
       "sources": [
         {
           "type": "archive",
