@@ -115,7 +115,8 @@ class PhotoOrganizerWindow(Adw.ApplicationWindow):
             folder = dialog.select_folder_finish(result)
             new_path = folder.get_path()
             self.source_dir_input.set_text(new_path)
-            self.destination_dir_input.set_text(new_path)
+            if not self.destination_dir_input.get_text():
+                self.destination_dir_input.set_text(new_path)
         except GLib.Error:
             pass
 
@@ -205,5 +206,6 @@ class PoLogWindow(Adw.ApplicationWindow):
         self.buffer.insert(end_iter, message + "\n")
         self.textview.scroll_to_mark(self.end_mark, 0.0, True, 0.0, 1.0)
         return False
+
 
 
