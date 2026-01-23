@@ -1,23 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.96.3 -->
 <interface>
+  <!-- interface-name main.ui -->
+  <requires lib="gio" version="2.0"/>
   <requires lib="gtk" version="4.17"/>
   <requires lib="libadwaita" version="1.7"/>
   <template class="PhotoOrganizerWindow" parent="AdwApplicationWindow">
-    <property name="title" translatable="yes">Photo Organizer</property>
-    <property name="default-width">1200</property>
-    <property name="default-height">800</property>
     <property name="content">
       <object class="AdwToolbarView">
         <child type="top">
           <object class="AdwHeaderBar">
-            <child type="end">
-              <object class="GtkMenuButton">
-                <property name="primary">True</property>
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="tooltip-text" translatable="yes">Main Menu</property>
-                <property name="menu-model">primary_menu</property>
-              </object>
-            </child>
             <property name="title-widget">
               <object class="GtkLabel">
                 <property name="css-classes">title</property>
@@ -25,93 +17,107 @@
                 <property name="label">Photo Organizer</property>
               </object>
             </property>
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="menu-model">primary_menu</property>
+                <property name="primary">True</property>
+                <property name="tooltip-text" translatable="yes">Main Menu</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
           <object class="AdwClamp">
-            <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="spacing">10</property>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title">Source Directory</property>
+            <property name="child">
+              <object class="AdwStatusPage">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkEntry" id="source_dir_input">
-                        <property name="hexpand">True</property>
-                        <property name="valign">center</property>
+                      <object class="AdwActionRow">
+                        <property name="title">Source Directory</property>
+                        <child>
+                          <object class="GtkEntry" id="source_dir_input">
+                            <property name="hexpand">True</property>
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="source_dir_button">
+                            <property name="icon-name">folder-open-symbolic</property>
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkButton" id="source_dir_button">
-                        <property name="icon-name">folder-open-symbolic</property>
+                      <object class="AdwActionRow">
+                        <property name="title">Organize</property>
+                        <child type="suffix">
+                          <object class="GtkSwitch" id="organize_toggle">
+                            <property name="active">False</property>
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Destination Directory</property>
+                        <child>
+                          <object class="GtkEntry" id="destination_dir_input">
+                            <property name="hexpand">True</property>
+                            <property name="sensitive" bind-source="organize_toggle" bind-property="active" bind-flags="default">False</property>
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="destination_dir_button">
+                            <property name="icon-name">folder-open-symbolic</property>
+                            <property name="sensitive" bind-source="organize_toggle" bind-property="active" bind-flags="default">False</property>
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Rename</property>
                         <property name="valign">center</property>
+                        <child>
+                          <object class="GtkSwitch" id="rename_toggle">
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Dry-run</property>
+                        <property name="valign">center</property>
+                        <child>
+                          <object class="GtkSwitch" id="dry_run_toggle">
+                            <property name="valign">center</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title">Organize</property>
-                    <child type="suffix">
-                      <object class="GtkSwitch" id="organize_toggle">
-                        <property name="active">False</property>
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title">Destination Directory</property>
-                    <child>
-                      <object class="GtkEntry" id="destination_dir_input">
-                        <property name="hexpand">True</property>
-                        <property name="sensitive" bind-source="organize_toggle" bind-property="active" bind-flags="default">False</property>
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="destination_dir_button">
-                        <property name="icon-name">folder-open-symbolic</property>
-                        <property name="sensitive" bind-source="organize_toggle" bind-property="active" bind-flags="default">False</property>
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title">Rename</property>
-                    <property name="valign">center</property>
-                    <child>
-                      <object class="GtkSwitch" id="rename_toggle">
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="title">Dry-run</property>
-                    <property name="valign">center</property>
-                    <child>
-                      <object class="GtkSwitch" id="dry_run_toggle">
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
+                </property>
+                <property name="description">Select organizer settings</property>
+                <property name="icon-name">com.thecirculark.photoorganizer</property>
+                <property name="title">Photo Organizer</property>
               </object>
-            </child>
+            </property>
           </object>
         </child>
         <child type="bottom">
           <object class="GtkBox">
             <property name="halign">center</property>
             <property name="hexpand">True</property>
-            <property name="spacing">10</property>
             <property name="margin-bottom">20</property>
+            <property name="spacing">10</property>
             <child>
               <object class="GtkButton" id="run_button">
                 <property name="action-name">win.run</property>
@@ -127,16 +133,19 @@ pill</property>
         </child>
       </object>
     </property>
+    <property name="default-height">800</property>
+    <property name="default-width">1200</property>
+    <property name="title" translatable="yes">Photo Organizer</property>
   </template>
-   <menu id="primary_menu">
+  <menu id="primary_menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
         <attribute name="action">win.show-help-overlay</attribute>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_About PhotoOrganizer</attribute>
         <attribute name="action">app.about</attribute>
+        <attribute name="label" translatable="yes">_About PhotoOrganizer</attribute>
       </item>
     </section>
   </menu>

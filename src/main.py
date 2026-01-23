@@ -52,14 +52,17 @@ class PhotoOrganizerApplication(Adw.Application):
 
     def on_about_action(self, *args):
         """Callback for the app.about action."""
-        about = Adw.AboutDialog(application_name='photoorganizer',
-                                application_icon='com.thecirculark.photoorganizer',
-                                developer_name='Andrew',
-                                version='0.1.0',
-                                developers=['Andrew'],
-                                copyright='© 2026 Andrew')
-        # Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
-        about.set_translator_credits(_('translator-credits'))
+        about = Adw.AboutDialog(
+            application_name='Photo Organizer',
+            application_icon='com.thecirculark.photoorganizer',
+            developer_name='Andrew James',
+            version='0.1.0',
+            developers=['Andrew James'],
+            copyright='© 2026 Andrew James',
+            license_type=Gtk.License.GPL_3_0,
+            website='https://github.com/TheCircularK/PhotoOrganizer'
+        )
+        about.set_translator_credits(_('None - please contribute!'))
         about.present(self.props.active_window)
 
     def on_preferences_action(self, widget, _):

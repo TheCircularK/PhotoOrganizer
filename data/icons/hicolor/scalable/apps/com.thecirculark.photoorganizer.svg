@@ -1,55 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#62a0ea;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1c71d8;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  
-  <!-- Background circle with gradient -->
-  <circle cx="64" cy="64" r="58" fill="url(#circleGradient)" />
-  
-  <!-- Camera shutter design (8 blades forming aperture) -->
-  <g id="shutter" transform="translate(64,64)">
-    <path d="M 0,-45 L 8,-20 L -8,-20 Z" fill="#1a5fb4" opacity="0.9" />
-    <path d="M 31.82,-31.82 L 20,0 L 14.14,-14.14 Z" fill="#1a5fb4" opacity="0.9" transform="rotate(45)" />
-    <path d="M 45,0 L 20,8 L 20,-8 Z" fill="#1a5fb4" opacity="0.9" transform="rotate(90)" />
-    <path d="M 31.82,31.82 L 0,20 L 14.14,14.14 Z" fill="#1a5fb4" opacity="0.9" transform="rotate(135)" />
-    <path d="M 0,45 L -8,20 L 8,20 Z" fill="#1a5fb4" opacity="0.9" transform="rotate(180)" />
-    <path d="M -31.82,31.82 L -20,0 L -14.14,14.14 Z" fill="#1a5fb4" opacity="0.9" transform="rotate(225)" />
-    <path d="M -45,0 L -20,-8 L -20,8 Z" fill="#1a5fb4" opacity="0.9" transform="rotate(270)" />
-    <path d="M -31.82,-31.82 L 0,-20 L -14.14,-14.14 Z" fill="#1a5fb4" opacity="0.9" transform="rotate(315)" />
-    <circle cx="0" cy="0" r="18" fill="#ffffff" opacity="0.15" />
-  </g>
-  
-  <!-- Three overlapping file icons in center -->
-  <g id="files" transform="translate(64,64)">
-    <!-- File 1 (darkest blue, back layer) -->
-    <g transform="translate(-8,2)">
-      <rect x="-10" y="-12" width="20" height="26" rx="2" ry="2" fill="#1a5fb4" opacity="0.9" />
-      <path d="M -10,-12 L -10,-6 L -4,-12 Z" fill="#15539e" opacity="0.9" />
-      <rect x="-7" y="-6" width="14" height="2" rx="0.5" fill="#ffffff" opacity="0.3" />
-      <rect x="-7" y="-2" width="14" height="2" rx="0.5" fill="#ffffff" opacity="0.3" />
-      <rect x="-7" y="2" width="10" height="2" rx="0.5" fill="#ffffff" opacity="0.3" />
-    </g>
-    
-    <!-- File 2 (medium blue, middle layer) -->
-    <g transform="translate(0,-2)">
-      <rect x="-10" y="-12" width="20" height="26" rx="2" ry="2" fill="#3584e4" opacity="0.95" />
-      <path d="M -10,-12 L -10,-6 L -4,-12 Z" fill="#2f76d4" opacity="0.95" />
-      <rect x="-7" y="-6" width="14" height="2" rx="0.5" fill="#ffffff" opacity="0.4" />
-      <rect x="-7" y="-2" width="14" height="2" rx="0.5" fill="#ffffff" opacity="0.4" />
-      <rect x="-7" y="2" width="10" height="2" rx="0.5" fill="#ffffff" opacity="0.4" />
-    </g>
-    
-    <!-- File 3 (lightest blue, front layer) -->
-    <g transform="translate(8,-6)">
-      <rect x="-10" y="-12" width="20" height="26" rx="2" ry="2" fill="#62a0ea" opacity="1" />
-      <path d="M -10,-12 L -10,-6 L -4,-12 Z" fill="#4d8dd9" opacity="1" />
-      <rect x="-7" y="-6" width="14" height="2" rx="0.5" fill="#ffffff" opacity="0.5" />
-      <rect x="-7" y="-2" width="14" height="2" rx="0.5" fill="#ffffff" opacity="0.5" />
-      <rect x="-7" y="2" width="10" height="2" rx="0.5" fill="#ffffff" opacity="0.5" />
-    </g>
-  </g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="250mm"
+   height="250mm"
+   viewBox="0 0 250 250"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     id="layer1"><ellipse
+       style="fill:#3f8eff;fill-opacity:0;stroke:#000000;stroke-width:10;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       id="path1"
+       ry="91.305534"
+       rx="95.018036"
+       cy="125"
+       cx="125" /><g
+       style="fill:#000000"
+       id="g2"
+       transform="matrix(0.33330087,0,0,0.31132724,42.944992,48.354814)"><g
+         id="g8">
+	<path
+   d="M 327.606,14.073 C 302.091,5.11 274.774,0 246.216,0 223.117,0 200.857,3.417 179.648,9.363 l 0.018,152.669 z"
+   id="path1-3" />
+	<path
+   d="M 468.235,140.417 C 446.653,95.193 411.792,57.622 368.561,32.769 L 260.913,140.417 Z"
+   id="path2" />
+	<path
+   d="m 12.249,169.751 c -7.865,24.08 -12.247,49.726 -12.247,76.415 0,24.465 3.69,48.044 10.328,70.353 h 148.706 z"
+   id="path3" />
+	<path
+   d="m 355.753,466.411 c 43.773,-21.838 80.117,-56.199 104.273,-98.557 L 355.753,263.571 Z"
+   id="path4" />
+	<path
+   d="M 483.786,182.597 H 334.424 l 144.19,144.156 c 8.766,-25.272 13.762,-52.316 13.762,-80.587 0,-22.017 -3.156,-43.261 -8.59,-63.569 z"
+   id="path5" />
+	<path
+   d="m 170.382,480.355 c 23.903,7.735 49.352,12.022 75.834,12.022 23.387,0 45.918,-3.482 67.357,-9.572 V 337.134 Z"
+   id="path6" />
+	<path
+   d="m 27.399,358.716 c 22.632,43.887 57.896,80.182 101.174,103.781 L 232.351,358.716 Z"
+   id="path7" />
+	<path
+   d="M 137.453,25.579 C 92.063,47.999 54.478,83.779 30.206,128.055 L 137.453,235.302 Z"
+   id="path8" />
+</g></g><g
+       style="fill:none"
+       id="g10"
+       transform="matrix(8.8194444,0,0,8.8194444,20.793752,16.716658)"><path
+         d="m 11.815508,11.710058 v 1.703224 m 0,-1.703224 -0.567741,0.567741 m 0.567741,-0.567741 0.567741,0.567741 m -0.549942,-1.685412 -0.0356,-0.03562 C 11.699517,10.458577 11.650409,10.409479 11.593123,10.37437 11.542313,10.34324 11.486927,10.3203 11.429018,10.30639 11.363668,10.2907 11.294236,10.2907 11.155373,10.2907 H 10.16906 c -0.3179635,0 -0.4769479,0 -0.5983934,0.06188 -0.106829,0.05443 -0.193682,0.141282 -0.2481113,0.248111 -0.061881,0.121446 -0.061881,0.280427 -0.061881,0.598394 V 13.3565 c 0,0.317963 0,0.476959 0.061881,0.598399 0.054429,0.10682 0.1412823,0.193685 0.2481113,0.248103 0.1214455,0.06189 0.2804271,0.06189 0.5983934,0.06189 h 3.292897 c 0.317963,0 0.476959,0 0.598399,-0.06189 0.10682,-0.05442 0.193685,-0.141283 0.248103,-0.248103 0.06189,-0.12144 0.06189,-0.280436 0.06189,-0.598399 v -1.589675 c 0,-0.317963 0,-0.476948 -0.06189,-0.598393 -0.05442,-0.106829 -0.141283,-0.193682 -0.248103,-0.248112 -0.12144,-0.06188 -0.280436,-0.06188 -0.598399,-0.06188 h -0.986308 c -0.138869,0 -0.208304,0 -0.273651,-0.01569 -0.05791,-0.01391 -0.113292,-0.03684 -0.164105,-0.06798 -0.05728,-0.03511 -0.106395,-0.0842 -0.204586,-0.182398 z"
+         stroke="#000000"
+         stroke-width="0.567741"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path1-1" /></g></g></svg>
