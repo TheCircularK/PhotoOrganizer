@@ -22,6 +22,7 @@
     "*.a"
   ],
   "modules": [
+    "python3-requirements.json",
     {
       "name": "photoorganizer",
       "builddir": true,
@@ -32,7 +33,6 @@
           "path": "."
         }
       ]
-    },
-    "python3-requirements.json"
+    }
   ]
 }

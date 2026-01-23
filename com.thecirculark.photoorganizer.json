@@ -23,6 +23,7 @@
     "*.a"
   ],
   "modules": [
+    "python3-requirements.json",
     {
       "name": "photoorganizer",
       "builddir": true,
@@ -34,7 +35,6 @@
           "branch": "main"
         }
       ]
-    },
-    "python3-requirements.json"
+    }
   ]
 }
