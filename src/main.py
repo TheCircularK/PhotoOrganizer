@@ -56,7 +56,7 @@ class PhotoOrganizerApplication(Adw.Application):
             application_name='Photo Organizer',
             application_icon='com.thecirculark.photoorganizer',
             developer_name='Andrew James',
-            version='0.1.0',
+            version='1.0.0',
             developers=['Andrew James'],
             copyright='© 2026 Andrew James',
             license_type=Gtk.License.GPL_3_0,
