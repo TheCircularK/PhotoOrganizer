@@ -31,6 +31,8 @@ photoorganizer_sources = [
   'main.py',
   'window.py',
   'utils.py',
+  'preferences.py',
+  'naming_patterns.py',
 ]
 
 install_data(photoorganizer_sources, install_dir: moduledir)

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="photoorganizer">
 	<schema id="com.thecirculark.photoorganizer" path="/com/thecirculark/photoorganizer/">
+		<key name="filename-pattern" type="s">
+			<default>'YYYYMMDD-HHmmss-MS'</default>
+			<summary>Filename pattern for photo organization</summary>
+			<description>Pattern used to generate filenames when organizing photos. Tokens like YYYY, MM, DD, HH, mm, ss, MS are replaced with date/time values.</description>
+		</key>
+		<key name="folder-pattern" type="s">
+			<default>'YYYY/MM-Month'</default>
+			<summary>Folder pattern for photo organization</summary>
+			<description>Pattern used to generate folder paths when organizing photos. Tokens like YYYY, MM, DD, Month are replaced with date values.</description>
+		</key>
 	</schema>
 </schemalist>

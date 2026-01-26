@@ -25,6 +25,7 @@ gi.require_version('Adw', '1')
 
 from gi.repository import Gtk, Gio, Adw
 from .window import PhotoOrganizerWindow
+from .preferences import PhotoOrganizerPreferences
 
 
 class PhotoOrganizerApplication(Adw.Application):
@@ -67,7 +68,8 @@ class PhotoOrganizerApplication(Adw.Application):
 
     def on_preferences_action(self, widget, _):
         """Callback for the app.preferences action."""
-        print('app.preferences action activated')
+        preferences = PhotoOrganizerPreferences()
+        preferences.present(self.props.active_window)
 
     def create_action(self, name, callback, shortcuts=None):
         """Add an application action.
@@ -89,3 +91,4 @@ def main(version):
     """The application's entry point."""
     app = PhotoOrganizerApplication()
     return app.run(sys.argv)
+

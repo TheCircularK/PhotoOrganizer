@@ -4,6 +4,7 @@ import shutil
 from pathlib import Path
 from exif import Image
 from datetime import datetime
+from gi.repository import Gio
 
 def parse_datetime_with_milliseconds(img: Image):
     """
@@ -47,8 +48,66 @@ def get_image_datetime_taken(image_path: Path):
     except Exception:
         return None, None
 
-def build_filename(dt: datetime, milliseconds: str, ext: str):
-    return f"{dt.strftime('%Y%m%d%H%M%S')}-{milliseconds}{ext}"
+def build_filename(dt: datetime, milliseconds: str, ext: str, pattern: str = None):
+    """Build filename using custom pattern or default"""
+    if pattern is None:
+        # Try to get pattern from settings, fall back to default
+        try:
+            settings = Gio.Settings.new('com.thecirculark.photoorganizer')
+            pattern = settings.get_string('filename-pattern')
+        except:
+            pattern = "YYYYMMDD-HHmmss-MS"
+
+    # Apply pattern - order matters! Replace longer tokens first
+    replacements = {
+        'YYYY': f"{dt.year:04d}",
+        'MM': f"{dt.month:02d}",
+        'DD': f"{dt.day:02d}",
+        'HH': f"{dt.hour:02d}",
+        'mm': f"{dt.minute:02d}",
+        'ss': f"{dt.second:02d}",
+        'MS': milliseconds,
+        'YY': f"{dt.year:02d}",
+        'ext': ext,
+    }
+
+    result = pattern
+    # Sort tokens by length (longest first) to prevent partial replacements
+    for token in sorted(replacements.keys(), key=len, reverse=True):
+        result = result.replace(token, replacements[token])
+
+    # If pattern doesn't include ext token, append the extension
+    if 'ext' not in pattern and ext:
+        result += ext
+
+    return result
+
+def build_folder_path(dt: datetime, pattern: str = None) -> str:
+    """Build folder path using custom pattern or default"""
+    if pattern is None:
+        # Try to get pattern from settings, fall back to default
+        try:
+            settings = Gio.Settings.new('com.thecirculark.photoorganizer')
+            pattern = settings.get_string('folder-pattern')
+        except:
+            pattern = "YYYY/MM-Month"
+
+    # Apply pattern - order matters! Replace longer tokens first
+    replacements = {
+        'Month': dt.strftime('%B'),
+        'YYYY': f"{dt.year:04d}",
+        'MM': f"{dt.month:02d}",
+        'DD': f"{dt.day:02d}",
+        'Mon': dt.strftime('%b'),
+        'YY': f"{dt.year:02d}",
+    }
+
+    result = pattern
+    # Sort tokens by length (longest first) to prevent partial replacements
+    for token in sorted(replacements.keys(), key=len, reverse=True):
+        result = result.replace(token, replacements[token])
+
+    return result
 
 def resolve_collision(target_path: Path) -> Path:
     if not target_path.exists():
@@ -84,7 +143,8 @@ def handle_files(source_folder: Path, rename_enabled: bool, organize_enabled: bo
                 target_name = full_image_path.name
 
             if organize_enabled:
-                target_dir = organize_dir / str(dt.year) / f"{dt.month:02d}-{dt.strftime('%B')}"
+                folder_path = build_folder_path(dt)
+                target_dir = organize_dir / folder_path
                 target_path = target_dir / target_name
             else:
                 target_dir = full_image_path.parent
@@ -103,4 +163,5 @@ def handle_files(source_folder: Path, rename_enabled: bool, organize_enabled: bo
                     action_description = f"Skipping {full_image_path}: {e}"
 
             logger(action_description)
+
 
