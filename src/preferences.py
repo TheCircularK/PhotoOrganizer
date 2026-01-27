@@ -55,10 +55,10 @@ class PhotoOrganizerPreferences(Adw.PreferencesDialog):
             if hasattr(self, 'folder_entry') and self.folder_entry:
                 self.folder_entry.set_text("YYYY/MM-Month")
 
+    @Gtk.Template.Callback()
     def on_filename_help_clicked(self, button):
         """Show filename pattern help dialog"""
-        dialog = Adw.MessageDialog(
-            parent=self,
+        dialog = Adw.AlertDialog(
             heading="Filename Pattern Help",
             body=self.naming_patterns.get_pattern_help(is_filename=True),
             default_response="ok"
@@ -66,10 +66,10 @@ class PhotoOrganizerPreferences(Adw.PreferencesDialog):
         dialog.add_response("ok", "OK")
         dialog.present()
 
+    @Gtk.Template.Callback()
     def on_folder_help_clicked(self, button):
         """Show folder pattern help dialog"""
-        dialog = Adw.MessageDialog(
-            parent=self,
+        dialog = Adw.AlertDialog(
             heading="Folder Pattern Help",
             body=self.naming_patterns.get_pattern_help(is_filename=False),
             default_response="ok"

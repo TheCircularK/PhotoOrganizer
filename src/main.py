@@ -57,10 +57,10 @@ class PhotoOrganizerApplication(Adw.Application):
             application_name='Photo Organizer',
             application_icon='com.thecirculark.photoorganizer',
             developer_name='Andrew James',
-            version='1.0.0',
+            version='1.1.0',
             developers=['Andrew James'],
             copyright='© 2026 Andrew James',
-            license_type=Gtk.License.GPL_3_0,
+            license_type=Gtk.License.GPL_3_0_ONLY,
             website='https://github.com/TheCircularK/PhotoOrganizer'
         )
         about.set_translator_credits(_('None - please contribute!'))
