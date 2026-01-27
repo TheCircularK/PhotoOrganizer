@@ -60,7 +60,7 @@ class PhotoOrganizerPreferences(Adw.PreferencesDialog):
         """Show filename pattern help dialog"""
         dialog = Adw.AlertDialog(
             heading="Filename Pattern Help",
-            body=self.naming_patterns.get_pattern_help(is_filename=True),
+            body=self.naming_patterns.get_filename_pattern_help(),
             default_response="ok"
         )
         dialog.add_response("ok", "OK")
@@ -71,7 +71,7 @@ class PhotoOrganizerPreferences(Adw.PreferencesDialog):
         """Show folder pattern help dialog"""
         dialog = Adw.AlertDialog(
             heading="Folder Pattern Help",
-            body=self.naming_patterns.get_pattern_help(is_filename=False),
+            body=self.naming_patterns.get_directory_pattern_help(),
             default_response="ok"
         )
         dialog.add_response("ok", "OK")

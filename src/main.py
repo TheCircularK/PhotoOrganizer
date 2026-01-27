@@ -92,3 +92,4 @@ def main(version):
     app = PhotoOrganizerApplication()
     return app.run(sys.argv)
 
+

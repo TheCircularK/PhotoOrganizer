@@ -155,10 +155,8 @@ class NamingPatterns:
 
         return True, ""
 
-    def get_pattern_help(self, is_filename: bool = True) -> str:
-        """Get help text for pattern tokens"""
-        if is_filename:
-            return """Available filename tokens:
+    def get_filename_pattern_help(self) -> str:
+        return """Available filename tokens:
 • YYYY - 4-digit year (2025)
 • YY - 2-digit year (25)
 • MM - 2-digit month (01-12)
@@ -173,8 +171,11 @@ Examples:
 • YYYYMMDD-HHmmss-MS → 20250115-143025-123.jpg
 • YYYY-MM-DD_HH.mm.ss → 2025-01-15_14.30.25.jpg
 • IMG_YYYYMMDD_HHmmss → IMG_20250115_143025.jpg"""
-        else:
-            return """Available folder tokens:
+
+    def get_directory_pattern_help(self) -> str:
+        """Get help text for pattern tokens"""
+
+        return """Available folder tokens:
 • YYYY - 4-digit year (2025)
 • YY - 2-digit year (25)
 • MM - 2-digit month (01-12)

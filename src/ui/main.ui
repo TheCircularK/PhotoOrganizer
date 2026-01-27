@@ -145,7 +145,7 @@ pill</property>
       </item>
       <item>
         <attribute name="action">app.about</attribute>
-        <attribute name="label" translatable="yes">_About PhotoOrganizer</attribute>
+        <attribute name="label" translatable="yes">_About Photo Organizer</attribute>
       </item>
       <item>
         <attribute name="action">app.preferences</attribute>
